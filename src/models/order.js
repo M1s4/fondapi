@@ -1,39 +1,33 @@
-var mongoose = require('mongoose');
+const { Schema, model: Model } = require('mongoose')
 
-const {Schema, model:model} = require('mongoose')
-
-const  schema = new Schema({
-    dishes:{
-        type:[String],
-        required:true
-    },
- 
-    name:{
-        type:String,
-        trime:true,
-        required:true,
-        maxlength:20,
-        minlength:2
-    },
-       // linea de datos
-    //(inicio)active,sent,aproved,preparing,ready,dispatched,pay(final)
-    status:{
-        type:String,
-        require:true,
-        enum:[
-            'active',
-            'sent',
-            'aproved',
-            'preparing',
-            'ready',
-            'dispatched',
-            'payed',
-            'cancelled'
-
-        ]   
-    }
-
+const schema = new Schema({
+  dishes: {
+    type: [String],
+    required: true
+  },
+  name: {
+    type: String,
+    trim: true,
+    required: true,
+    maxlength: 20,
+    minlength: 2
+  },
+  status: {
+    type: String,
+    required: true,
+    enum: [
+      'active',
+      'sent',
+      'approved',
+      'preparing',
+      'ready',
+      'dispatched',
+      'payed',
+      'cancelled'
+    ]
+  }
 })
 
 const model = Model(schema)
-module.exports={Schema, model}
+
+module.exports = { schema, model }

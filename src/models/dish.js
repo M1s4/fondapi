@@ -1,27 +1,30 @@
-const {Schema, model: Model} = requie('mongoose')
+const mongoose = require('mongoose')
 
-var mongoose = require('mongoose');
+const { Schema } = mongoose
 
-const dishSchema = new dishSchema({
-    name: {
-        type:String,
-        //quita espacio al principio y al final
-        trim: true,
-        maxlength:20,
-        minLenght:1
-    },
-    price:{
-        type:number,
-        require: true,
-        min:0
-    },
-    descripcion:{
-        type:String,
-        required: true,
-        default:'',
-        maxlenght:140,
-    }
+const schema = new Schema({
+  name: {
+    required: true,
+    type: String,
+    trim: true,
+    maxlength: 20,
+    minlength: 1
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  description: {
+    type: String,
+    required: true,
+    maxlength: 140
+  }
 })
 
-  const model = Model(schema)
-  module.export = {model, schema}
+// const model = mongoose.model(schema)
+
+module.exports = {
+  model: mongoose.model('Dish', schema),
+  schema 
+}
